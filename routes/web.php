@@ -1,17 +1,22 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\FrontController;
 use App\Http\Controllers\CourseController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\StudentController;
+use App\Http\Controllers\TeacherController;
+use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\LearningController;
+use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\CourseModulController;
 use App\Http\Controllers\CourseVideoController;
 use App\Http\Controllers\CourseStudentController;
 use App\Http\Controllers\StudentAnswerController;
 use App\Http\Controllers\CourseQuestionController;
+use App\Http\Controllers\ProjectStudentController;
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', [FrontController::class, 'index'])->name('front.index');
 
 Route::get('/dashboard', function () {
     return view('dashboard');
@@ -24,7 +29,44 @@ Route::middleware('auth')->group(function () {
 
     Route::prefix('dashboard')->name('dashboard.')->group(function () {
 
+        Route::resource('categories', CategoryController::class)
+        ->middleware('role:teacher'); // admin.categories.index
+
+        Route::resource('teachers', TeacherController::class)
+        ->middleware('role:teacher'); 
+
+        // menampilkan seluruh data student
+        Route::resource('students', StudentController::class)
+        ->middleware('role:teacher');
+
         Route::resource('courses', CourseController::class)
+        ->middleware('role:teacher');
+
+        Route::resource('project_students', ProjectStudentController::class)
+        ->middleware('role:teacher');
+
+        // menambahkan video
+        Route::get('/add/video/{course:id}', [CourseVideoController::class, 'create'])
+        ->middleware('role:teacher')
+        ->name('course.add_video');
+
+        Route::post('/add/video/save/{course:id}', [CourseVideoController::class, 'store'])
+        ->middleware('role:teacher')
+        ->name('course.add_video.save');
+
+        Route::resource('course_videos', CourseVideoController::class)
+        ->middleware('role:teacher');
+
+        // menambahkan modul
+        Route::get('/add/modul/{course:id}', [CourseModulController::class, 'create'])
+        ->middleware('role:teacher')
+        ->name('course.add_modul');
+
+        Route::post('/add/modul/save/{course:id}', [CourseModulController::class, 'store'])
+        ->middleware('role:teacher')
+        ->name('course.add_modul.save');
+
+        Route::resource('course_moduls', CourseModulController::class)
         ->middleware('role:teacher');
 
         Route::get('/course/question/create/{course}', [CourseQuestionController::class, 'create'])
@@ -50,6 +92,36 @@ Route::middleware('auth')->group(function () {
         ->middleware('role:teacher')
         ->name('course.course_students.store');
 
+        //details course video
+        Route::get('/details/video', [FrontController::class, 'video'])
+        ->name('video')
+        ->middleware('role:student|teacher');
+        
+        Route::get('/details/video/{course:slug}', [FrontController::class, 'details_video'])
+        ->name('details.video')
+        ->middleware('role:student|teacher');
+        
+        Route::get('/details/video/{course}/{courseVideoId}', [FrontController::class, 'video_course'])
+        ->name('video_course')
+        ->middleware('role:student|teacher');   
+
+        // details modul materi
+        Route::get('/details/modul', [FrontController::class, 'modul'])
+        ->name('modul')
+        ->middleware('role:student|teacher');
+
+        Route::get('/details/modul/{course:slug}', [FrontController::class, 'details_modul'])
+        ->name('front.modul')
+        ->middleware('role:student|teacher');
+
+        // project student
+        Route::get('/project', [FrontController::class, 'project'])->name('project')->middleware('role:student');
+
+        Route::get('/add/project', [FrontController::class, 'create'])->name('project.create')->middleware('role:student');
+    
+        Route::post('/project/store', [FrontController::class, 'project_store'])->name('project.store')
+        ->middleware('role:student');
+
         Route::get('/learning/finished/{course}', [LearningController::class, 'learning_finished'])
         ->middleware('role:student')
         ->name('learning.finished.course');
@@ -70,26 +142,11 @@ Route::middleware('auth')->group(function () {
 
         Route::post('/learning/{course}/{question}', [StudentAnswerController::class, 'store'])
         ->middleware('role:student')
-        ->name('learning.course.answer.store');
-
-        // menambahkan video
-        Route::get('/learning/{course}/{courseVideoId}', [LearningController::class, 'learning'])
-        ->name('front.learning')
-        ->middleware('role:student|teacher');
-
-        Route::get('/add/video/{course:id}', [CourseVideoController::class, 'create'])
-        ->middleware('role:teacher')
-        ->name('course.add_video');
-
-        Route::post('/add/video/save/{course:id}', [CourseVideoController::class, 'store'])
-        ->middleware('role:teacher')
-        ->name('course.add_video.save');
-
-        Route::resource('course_videos', CourseVideoController::class)
-        ->middleware('role:teacher');
-        
+        ->name('learning.course.answer.store');     
 
     });
+
+    Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 });
 
 require __DIR__.'/auth.php';

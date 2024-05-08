@@ -10,10 +10,6 @@ class Course extends Model
 {
     use HasFactory, SoftDeletes;
 
-    protected $guarded = [
-        'id',
-    ];
-
     protected $fillable = [
         'name',
         'slug',
@@ -33,6 +29,10 @@ class Course extends Model
 
     public function course_videos(){
         return $this->hasMany(CourseVideo::class);
+    }
+
+    public function course_moduls(){
+        return $this->hasMany(CourseModul::class);
     }
 
     public function course_keypoints(){

@@ -37,6 +37,13 @@ class CategorySeeder extends Seeder
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now(),
             ],
+            [
+                'name' => 'POST TEST',
+                'slug' => 'post-test',
+                'icon' => 'images/icon-default.png',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now(),
+            ],
         ]);
 
     }

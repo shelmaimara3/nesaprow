@@ -39,7 +39,7 @@ class CourseStudentController extends Controller
                 $student->status = 'Passed';
             }
         }
-        return view('admin.students.index', [
+        return view('admin.students.show', [
             'course' => $course,
             'questions' => $questions,
             'students' => $students,

@@ -22,6 +22,14 @@ class RolePermissionSeeder extends Seeder
             'create courses',
             'edit courses',
             'delete courses',
+            'view categories',
+            'create categories',
+            'edit categories',
+            'delete categories',
+            'view teachers',
+            'create projects',
+            'view projects',
+            'edit projects',
         ];
 
         // setiap user bisa memiliki beberapa permission
@@ -40,6 +48,13 @@ class RolePermissionSeeder extends Seeder
             'create courses',
             'edit courses',
             'delete courses',
+            'view categories',
+            'create categories',
+            'edit categories',
+            'delete categories',
+            'view teachers',
+            'view projects',
+            'edit projects',
         ]);
 
         $studentRole = Role::create([
@@ -48,13 +63,15 @@ class RolePermissionSeeder extends Seeder
 
         $studentRole->givePermissionTo([
             'view courses',
+            'create projects',
+            'view projects',
         ]);
 
         // membuat data user super admin untuk mengelola data awal
         // data kategori, kelas, dsb
         $user = User::create([
             'name' => 'Shelma Bakir',
-            'avatar' => 'images/default-avatar.png',
+            'avatar' => 'images/photos/default-photo.svg',
             'email' => 'shelma@owner.com',
             'password' => bcrypt('123456789'),
         ]);

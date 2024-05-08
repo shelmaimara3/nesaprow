@@ -1,17 +1,39 @@
-<x-app-layout>
-    <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Dashboard') }}
-        </h2>
-    </x-slot>
+@extends('layouts.main')
 
-    <div class="py-12">
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
-                <div class="p-6 text-gray-900">
-                    {{ __("You're logged in!") }}
+@section('container')
+
+        <div id="menu-content" class="flex flex-col w-full pb-[30px]">
+            <div class="nav flex justify-between p-5 border-b border-[#EEEEEE]">
+                <form class="search flex items-center w-[400px] h-[52px] p-[10px_16px]">
+                    <input type="hidden" class="font-semibold placeholder:text-[#7F8190] placeholder:font-normal w-full outline-none">
+                </form>
+                <div class="flex items-center gap-[30px]">
+                    <div class="flex gap-[14px]">
+                        <a href="" class="w-[46px] h-[46px] flex shrink-0 items-center justify-center">
+                        </a>
+                        <a href="" class="w-[46px] h-[46px] flex shrink-0 items-center justify-center">
+                        </a>
+                    </div>
+                    <div class="h-[46px] w-[1px] flex shrink-0 border border-[#EEEEEE]"></div>
+                    <div class="flex gap-3 items-center">
+                        <div class="flex flex-col text-right">
+                            <p class="text-sm text-[#7F8190]">Hello</p>
+                            <p class="font-semibold">{{ Auth::user()->name }}</p>
+                        </div>
+                        <div class="w-[46px] h-[46px]">
+                            <img src="{{ Storage::url(Auth::user()->avatar) }}" class="w-full h-full object-cover" alt="photo">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="flex flex-col px-5 mt-5">
+                <div class="w-full flex justify-between items-center">
+                    <div class="flex flex-col gap-1">
+                        
+                        <p class="font-extrabold text-[30px] leading-[45px]">{{ Auth::user()->hasRole('teacher') ? __('Teacher Dashboard') : __('Dashboard') }}</p>
+                        
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
-</x-app-layout>
+@endsection

@@ -11,21 +11,12 @@
     <section id="signup" class="flex w-full min-h-[832px] relative">
         <nav class="flex items-center px-[50px] pt-[30px] w-full absolute top-0">
             <div class="flex items-center">
-                <a href="index.html">
-                    <img src="{{asset('images/logo/logo.svg')}}" alt="logo">
+                <a href="{{ route('front.index') }}">
+                    <img src="{{asset('assets/logo/logo-nesaprow-black.svg')}}" alt="logo">
                 </a>
             </div>
             <div class="flex items-center justify-end w-full">
                 <ul class="flex items-center gap-[30px]">
-                    <li>
-                        <a href="" class="font-semibold text-white">Docs</a>
-                    </li>
-                    <li>
-                        <a href="" class="font-semibold text-white">About</a>
-                    </li>
-                    <li>
-                        <a href="" class="font-semibold text-white">Help</a>
-                    </li>
                     <li class="h-[52px] flex items-center">
                         <a href="{{ route('login') }}" class="font-semibold text-white p-[14px_30px] bg-[#0A090B] rounded-full text-center">Sign In</a>
                     </li>
@@ -93,38 +84,40 @@
                 </div>
                 <div class="logos w-full overflow-hidden">
                     <div class="group/slider flex flex-nowrap w-max items-center">
-                        <div class="logo-container animate-[slide_15s_linear_infinite] group-hover/slider:pause-animate flex gap-10 pl-10 items-center flex-nowrap">
+                        <div
+                            class="logo-container animate-[slide_15s_linear_infinite] group-hover/slider:pause-animate flex gap-10 pl-10 items-center flex-nowrap">
                             <div class="w-fit flex shrink-0">
-                                <img src="{{asset('images/logo/logo-51.svg')}}" alt="logo">
+                                <img src="{{ asset('assets/logo/logo-nesaprow-white.svg')}}" alt="logo">
                             </div>
                             <div class="w-fit flex shrink-0">
-                                <img src="{{asset('images/logo/logo-51-1.svg')}}" alt="logo">
+                                <img src="{{ asset('assets/logo/logo-nesaprow-white.svg')}}" alt="logo">
                             </div>
                             <div class="w-fit flex shrink-0">
-                                <img src="{{asset('images/logo/logo-52.svg')}}" alt="logo">
+                                <img src="{{ asset('assets/logo/logo-nesaprow-white.svg')}}" alt="logo">
                             </div>
                             <div class="w-fit flex shrink-0">
-                                <img src="{{asset('images/logo/logo-52-1.svg')}}" alt="logo">
+                                <img src="{{ asset('assets/logo/logo-nesaprow-white.svg')}}" alt="logo">
                             </div>
                             <div class="w-fit flex shrink-0">
-                                <img src="{{asset('images/logo/logo-51.svg')}}" alt="logo">
+                                <img src="{{ asset('assets/logo/logo-nesaprow-white.svg')}}" alt="logo">
                             </div>
                         </div>
-                        <div class="logo-container animate-[slide_15s_linear_infinite] group-hover/slider:pause-animate flex gap-10 pl-10 items-center flex-nowrap">
+                        <div
+                            class="logo-container animate-[slide_15s_linear_infinite] group-hover/slider:pause-animate flex gap-10 pl-10 items-center flex-nowrap">
                             <div class="w-fit flex shrink-0">
-                                <img src="{{asset('images/logo/logo-51.svg')}}" alt="logo">
+                                <img src="{{ asset('assets/logo/logo-nesaprow-white.svg')}}" alt="logo">
                             </div>
                             <div class="w-fit flex shrink-0">
-                                <img src="{{asset('images/logo/logo-51-1.svg')}}" alt="logo">
+                                <img src="{{ asset('assets/logo/logo-nesaprow-white.svg')}}" alt="logo">
                             </div>
                             <div class="w-fit flex shrink-0">
-                                <img src="{{asset('images/logo/logo-52.svg')}}" alt="logo">
+                                <img src="{{ asset('assets/logo/logo-nesaprow-white.svg')}}" alt="logo">
                             </div>
                             <div class="w-fit flex shrink-0">
-                                <img src="{{asset('images/logo/logo-52-1.svg')}}" alt="logo">
+                                <img src="{{ asset('assets/logo/logo-nesaprow-white.svg')}}" alt="logo">
                             </div>
                             <div class="w-fit flex shrink-0">
-                                <img src="{{asset('images/logo/logo-51.svg')}}" alt="logo">
+                                <img src="{{ asset('assets/logo/logo-nesaprow-white.svg')}}" alt="logo">
                             </div>
                         </div>
                     </div>

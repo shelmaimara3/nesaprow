@@ -17,12 +17,11 @@
                     </div>
                     <div class="flex flex-col gap-[2px]">
                         <p class="font-bold text-lg">{{ $course->name }}</p>
-                        <p class="text-[#7F8190] text-sm">Kognitif</p>
                     </div>
                 </div>
                 <div class="flex gap-3 items-center">
                     <div class="flex flex-col text-right">
-                        <p class="text-sm text-[#7F8190]">Howdy</p>
+                        <p class="text-sm text-[#7F8190]">Hello</p>
                         <p class="font-semibold">{{ Auth::user()->name }}</p>
                     </div>
                     <div class="w-[46px] h-[46px]">

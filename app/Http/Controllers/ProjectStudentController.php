@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\ProjectStudent;
+use App\Models\Occupation;
 use Illuminate\Http\Request;
+use App\Models\ProjectStudent;
+use Illuminate\Support\Facades\DB;
 
 class ProjectStudentController extends Controller
 {
@@ -13,6 +15,9 @@ class ProjectStudentController extends Controller
     public function index()
     {
         //
+        $projects = ProjectStudent::with(['user'])->orderByDesc('id')->get();
+
+        return view('admin.project_students.index', compact('projects'));
     }
 
     /**
@@ -21,6 +26,7 @@ class ProjectStudentController extends Controller
     public function create()
     {
         //
+        
     }
 
     /**
@@ -37,6 +43,9 @@ class ProjectStudentController extends Controller
     public function show(ProjectStudent $projectStudent)
     {
         //
+        // Mendapatkan informasi file yang diunggah berdasarkan ID
+        $fileName = $projectStudent->proof_project; // Misalnya, asumsi 'proof_project' adalah kolom yang menyimpan nama file
+        return view('admin.project_students.show', compact('projectStudent', 'fileName'));
     }
 
     /**
@@ -53,6 +62,15 @@ class ProjectStudentController extends Controller
     public function update(Request $request, ProjectStudent $projectStudent)
     {
         //
+        DB::transaction(function () use ($projectStudent) {
+            
+            $projectStudent->update([
+                'is_done' => true
+            ]);
+
+        });
+
+        return redirect()->back();
     }
 
     /**
