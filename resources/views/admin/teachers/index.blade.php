@@ -21,7 +21,7 @@
                     <div class="flex justify-center shrink-0 w-[150px]">
                         <p class="text-[#7F8190]">Date Created</p>
                     </div>
-                    <div class="flex justify-center shrink-0 w-[120px]">
+                    <div class="flex shrink-0 w-[120px]">
                         <p class="text-[#7F8190]">Action</p>
                     </div>
                 </div>

@@ -11,10 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('course_keypoints', function (Blueprint $table) {
+        Schema::create('user_login_times', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->foreignId('course_id')->constrained()->onDelete('cascade');
+            $table->unsignedBigInteger('user_id');
+            $table->timestamp('login_time')->nullable();
+            $table->timestamp('logout_time')->nullable();
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->softDeletes();
             $table->timestamps();
         });
@@ -25,6 +27,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('course_keypoints');
+        Schema::dropIfExists('user_login_times');
     }
 };

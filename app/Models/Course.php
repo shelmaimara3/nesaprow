@@ -35,10 +35,6 @@ class Course extends Model
         return $this->hasMany(CourseModul::class);
     }
 
-    public function course_keypoints(){
-        return $this->hasMany(CourseKeypoint::class);
-    }
-
     public function students(){
         return $this->belongsToMany(User::class, 'course_students', 'course_id', 'user_id');
     }

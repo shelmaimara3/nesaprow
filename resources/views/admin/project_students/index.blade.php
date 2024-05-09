@@ -81,7 +81,13 @@
                     Belum ada project student yang dikumpulkan.
                 </p>
                 @endforelse
-
+                <div id="pagination" class="flex gap-4 items-center mt-[37px] px-5">
+                    @if ($projects->lastPage() > 1)
+                        @for ($i = 1; $i <= $projects->lastPage(); $i++)
+                            <a href="{{ $projects->url($i) }}" class="flex items-center justify-center border border-[#EEEEEE] rounded-full w-10 h-10 font-semibold transition-all duration-300 hover:text-white hover:bg-[#0A090B] text-[#7F8190] {{ $projects->currentPage() == $i ? 'text-white bg-[#0A090B]' : '' }}">{{ $i }}</a>
+                        @endfor
+                    @endif
+                </div>
             </div>
         </div>
 @endsection

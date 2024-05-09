@@ -7,6 +7,7 @@ use App\Models\Teacher;
 use App\Models\Category;
 use Illuminate\Http\Request;
 use App\Models\CourseStudent;
+use App\Models\UserLoginTime;
 use Illuminate\Support\Facades\Auth;
 
 class DashboardController extends Controller
@@ -16,6 +17,10 @@ class DashboardController extends Controller
 
         $user = Auth::user();
         $coursesQuery = Course::query();
+
+        // Query untuk UserLoginTime
+        $userLoginTimesQuery = UserLoginTime::query();
+        $userLoginTimes = $userLoginTimesQuery->paginate(5); // Menambahkan pagination
 
         // data yang ditampilkan apabila login sbg teacher
         
@@ -28,6 +33,6 @@ class DashboardController extends Controller
         $teachers = Teacher::count();
 
 
-        return view('dashboard', compact('categories', 'courses', 'students', 'teachers'));
+        return view('dashboard', compact('categories', 'courses', 'students', 'teachers', 'userLoginTimes'));
     }
 }

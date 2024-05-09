@@ -15,7 +15,7 @@ class ProjectStudentController extends Controller
     public function index()
     {
         //
-        $projects = ProjectStudent::with(['user'])->orderByDesc('id')->get();
+        $projects = ProjectStudent::with(['user'])->orderByDesc('id')->paginate(10);
 
         return view('admin.project_students.index', compact('projects'));
     }

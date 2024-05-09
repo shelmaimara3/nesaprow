@@ -9,6 +9,7 @@ use App\Http\Controllers\TeacherController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\LearningController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\UserLoginController;
 use App\Http\Controllers\CourseModulController;
 use App\Http\Controllers\CourseVideoController;
 use App\Http\Controllers\CourseStudentController;
@@ -147,6 +148,7 @@ Route::middleware('auth')->group(function () {
     });
 
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+
 });
 
 require __DIR__.'/auth.php';

@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use App\Models\Student;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use App\Http\Requests\StoreStudentRequest;
 
 class StudentController extends Controller
 {
@@ -14,32 +16,50 @@ class StudentController extends Controller
     public function index()
     {
         //
-        $students = User::orderByDesc('id')->get();
+        $students = Student::with('user')->paginate(10);
         return view('admin.students.index', [
             'students' => $students
-        ]);
-    }
-
-    public function __invoke()
-    {
-        // Logika Anda di sini
-        
+         ]);
     }
 
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
+    public function create(Student $student)
     {
         //
+        $students = Student::orderByDesc('id')->get();
+        return view('admin.students.create',[
+            'students' => $students
+        ]);
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(StoreStudentRequest $request)
     {
         //
+        $validated = $request->validated();
+
+        $user = User::where('email', $validated['email'])->first();
+
+        if(!$user){
+            return back()->withErrors([
+                'email' => 'Data tidak ditemukan'
+            ]);
+        }
+
+        DB::transaction(function () use ($user, $validated){
+
+            $validated['user_id'] = $user->id;
+            $validated['is_active'] = true;
+
+            Student::create($validated);
+
+        });
+
+        return redirect()->route('dashboard.students.index');
     }
 
     /**
@@ -72,5 +92,22 @@ class StudentController extends Controller
     public function destroy(Student $student)
     {
         //
+        DB::beginTransaction();
+        
+        try {
+            $student->delete();
+
+            $user = \App\Models\User::find($student->user_id);
+            DB::commit();
+
+            return redirect()->back();
+        } 
+        catch (\Exception $e) {
+            DB::rollBack();
+            $error = ValidationException::withMessages([
+                'system_error' => ['System error!' . $e->getMessage()],
+            ]);
+            throw $error;
+        }
     }
 }
