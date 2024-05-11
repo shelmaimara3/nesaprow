@@ -11,27 +11,30 @@
 </head>
 
 <body class="font-poppins text-[#0A090B]">
-    <section id="signup" class="flex w-full min-h-[832px]">
-        <nav class="flex items-center px-[50px] pt-[30px] w-full absolute top-0">
+    <section id="signup" class="flex flex-col md:flex-row w-full min-h-screen md:min-h-screen">
+        <nav class="flex items-center px-4 md:px-8 pt-4 md:pt-6 w-full absolute top-0">
             <div class="flex items-center">
                 <a href="{{ route('front.index') }}">
                     <img src="{{asset('assets/logo/logo-nesaprow-black.svg')}}" alt="logo">
                 </a>
             </div>
-            <div class="flex items-center justify-end w-full">
-                <ul class="flex items-center gap-[30px]">
-                    <li class="h-[52px] flex items-center">
+            <div class="hidden md:flex items-center justify-end w-full">
+                <ul class="flex items-center gap-4 md:gap-6">
+                    <li class="h-12 flex items-center">
                         <a href="{{ route('register') }}"
-                            class="font-semibold text-white p-[14px_30px] bg-[#0A090B] rounded-full text-center">Sign Up</a>
+                            class="font-semibold text-white px-4 py-2 bg-[#0A090B] rounded-full text-center">Sign Up</a>
                     </li>
                 </ul>
             </div>
+            <div class="md:hidden flex w-full justify-end">
+                <a href="{{ route('register') }}" class="md:hidden text-white px-4 py-2 bg-[#0A090B] rounded-full">Sign Up</a>
+            </div>
         </nav>
-        <div class="left-side min-h-screen flex flex-col w-full pb-[30px] pt-[82px]">
-            <div class="h-full w-full flex items-center justify-center">
-                <form method="POST" action="{{ route('login') }}" class="flex flex-col gap-[30px] w-[450px] shrink-0">
+        <div class="left-side flex flex-col w-full pb-2 md:pb-4 pt-12 md:pt-24 px-4 md:px-8">
+            <div class="flex flex-col items-center justify-center pt-8 md:pt-24 gap-8 md:gap-10">
+                <form method="POST" action="{{ route('login') }}" class="flex flex-col gap-4 md:gap-6 w-full max-w-md mx-auto">
                     @csrf
-                    <h1 class="font-bold text-2xl leading-9">Sign In</h1>
+                    <h1 class="font-bold text-lg md:text-2xl">Sign In</h1>
                     <div class="flex flex-col gap-2">
                         <p class="font-semibold" :value="old('email')">Email Address</p>
                         <div
@@ -83,16 +86,15 @@
                 </form>
             </div>
         </div>
-        <div class="right-side min-h-screen flex flex-col w-[650px] shrink-0 pb-[30px] pt-[82px] bg-[#6436F1]">
-            <div class="h-full w-full flex flex-col items-center justify-center pt-[66px] gap-[100px]">
-                <div class="w-[500px] h-[360px] flex shrink-0 overflow-hidden">
-                    <img src="{{asset('images/thumbnail/sign-in-illustration.png')}}" class="w-full h-full object-contain"
+        <div class="right-side flex flex-col w-full md:w-[760px] bg-[#6436F1] pb-4 md:pb-8 pt-18 md:pt-32 px-4 md:px-8">
+            <div class="flex flex-col items-center justify-center pt-12 md:pt-18 gap-8 md:gap-10">
+                <div class="w-full h-72 md:h-96 flex-shrink-0 overflow-hidden">
+                    <img src="{{asset('images/thumbnail/sign-in2-illustration.png')}}" class="w-full h-full object-contain"
                         alt="banner">
                 </div>
                 <div class="logos w-full overflow-hidden">
                     <div class="group/slider flex flex-nowrap w-max items-center">
-                        <div
-                            class="logo-container animate-[slide_15s_linear_infinite] group-hover/slider:pause-animate flex gap-10 pl-10 items-center flex-nowrap">
+                        <div class="logo-container animate-[slide_15s_linear_infinite] group-hover/slider:pause-animate flex gap-10 pl-10 items-center flex-nowrap">
                             <div class="w-fit flex shrink-0">
                                 <img src="{{ asset('assets/logo/logo-nesaprow-white.svg')}}" alt="logo">
                             </div>
@@ -109,8 +111,7 @@
                                 <img src="{{ asset('assets/logo/logo-nesaprow-white.svg')}}" alt="logo">
                             </div>
                         </div>
-                        <div
-                            class="logo-container animate-[slide_15s_linear_infinite] group-hover/slider:pause-animate flex gap-10 pl-10 items-center flex-nowrap">
+                        <div class="logo-container animate-[slide_15s_linear_infinite] group-hover/slider:pause-animate flex gap-10 pl-10 items-center flex-nowrap">
                             <div class="w-fit flex shrink-0">
                                 <img src="{{ asset('assets/logo/logo-nesaprow-white.svg')}}" alt="logo">
                             </div>

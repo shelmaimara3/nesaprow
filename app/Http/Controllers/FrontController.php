@@ -16,8 +16,7 @@ class FrontController extends Controller
 {
     //
     public function index(){
-
-        $courses = Course::with(['students'])->orderByDesc('id')->get();
+        $courses = Course::with(['students'])->orderBy('id', 'asc')->get();
         return view('front.index', compact('courses'));
     }
 
