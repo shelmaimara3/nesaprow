@@ -10,7 +10,7 @@
                     <span class="text-[#7F8190] last:text-[#0A090B]">/</span>
                     <a href="{{ route('dashboard.learning.index') }}" class="text-[#7F8190] last:text-[#0A090B] last:font-semibold">My Courses</a>
                     <span class="text-[#7F8190] last:text-[#0A090B]">/</span>
-                    <a href="#" class="text-[#7F8190] last:text-[#0A090B] last:font-semibold ">Rapport Details</a>
+                    <a href="#" class="text-[#7F8190] last:text-[#0A090B] last:font-semibold ">Raport Details</a>
                 </div>
             </div>
             <div class="header ml-[70px] pr-[70px] w-[940px] flex items-center justify-between mt-10">

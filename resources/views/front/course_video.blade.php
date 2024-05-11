@@ -1,9 +1,10 @@
 <!doctype html>
-<html>
+<html class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://cdn.tailwindcss.com"></script>
+    <link href="{{ asset('css/output.css') }}" rel="stylesheet">
     <link href="{{ asset('css/output2.css') }}" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
     <!-- CSS -->
@@ -14,15 +15,15 @@
       href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.css"/>
 </head>
 <body class="text-black font-poppins pt-10 pb-[50px]">
-    <div style="background-image: url('{{asset('assets//background/Nesaprow-banner.png') }}');" id="hero-section" class="max-w-[1200px] mx-auto w-full h-[393px] flex flex-col gap-10 pb-[50px] bg-center bg-no-repeat bg-cover rounded-[32px] overflow-hidden absolute transform -translate-x-1/2 left-1/2">
+    <div style="background-image: url('{{asset('assets//background/Nesaprow-Banner2.png') }}');" id="hero-section" class="max-w-[1200px] mx-auto w-full h-[393px] flex flex-col gap-10 pb-[50px] bg-center bg-no-repeat bg-cover rounded-[32px] overflow-hidden absolute transform -translate-x-1/2 left-1/2">
         <nav class="flex justify-between items-center pt-6 px-[50px]">
-            <a href="{{ route('front.index') }}">
+            <a href="{{ route('dashboard') }}">
                 <img src="{{asset('assets//logo/logo-nesaprow.svg') }}" alt="logo">
             </a>
 
             <ul class="flex items-center gap-[30px] text-white">
                 <li>
-                    <a href="{{ route('front.index') }}" class="font-semibold">Home</a>
+                    <a href="{{ route('dashboard.video') }}" class="font-semibold">Dashboard</a>
                 </li>
             </ul>
             @auth
@@ -32,7 +33,7 @@
                     
                 </div>
                 <div class="w-[56px] h-[56px] overflow-hidden rounded-full flex shrink-0">
-                    <a href="{{ route('dashboard') }}">
+                    <a href="{{ route('dashboard.video') }}">
                         <img src="{{ Storage::url(Auth::user()->avatar) }}" class="w-full h-full object-cover" alt="photo">
                     </a>
                 </div>
@@ -147,7 +148,13 @@
                     </div>
                     
                 </div>
-                
+                <div class="container mx-auto">
+                    <div class="w-10 h-10  bg-blue-200 rounded-full flex fixed bottom-5 right-5 cursor-pointer">
+                        <a href="#" class="text-xl m-auto">
+                            🔝
+                        </a>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
