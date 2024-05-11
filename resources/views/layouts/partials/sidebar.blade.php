@@ -7,9 +7,8 @@
             <li>
                 <h3 class="font-bold text-xs text-[#A5ABB2]">DAILY USE</h3>
             </li>
-            
-            <li>
-                <a href="{{ route('dashboard') }}" class="p-[10px_16px] flex items-center gap-[14px] rounded-full h-11  transition-all duration-300 hover:bg-[#8046FD]">
+                
+                <a href="{{ route('dashboard') }}" class="p-[10px_16px] flex items-center gap-[14px] rounded-full h-11 {{ Request::is('dashboard') ? 'bg-[#8046FD]' : '' }} transition-all duration-300 hover:bg-[#8046FD]">
                     <div>
                         <img src="{{asset('images/icons/home-hashtag.svg')}}" alt="icon">
                     </div>
@@ -18,7 +17,7 @@
             </li>
             @role('teacher')
             <li>
-                <a href="{{ route('dashboard.categories.index') }}" class="p-[10px_16px] flex items-center gap-[14px] rounded-full h-11 transition-all duration-300 hover:bg-[#8046FD]">
+                <a href="{{ route('dashboard.categories.index') }}" class="p-[10px_16px] flex items-center gap-[14px] rounded-full h-11 {{ Request::is('dashboard/categories*') ? 'bg-[#8046FD]' : '' }} transition-all duration-300 hover:bg-[#8046FD]">
                     <div>
                         <img src="{{asset('images/icons/code.svg')}}" alt="icon">
                     </div>
@@ -26,15 +25,15 @@
                 </a>
             </li>
             <li>
-                <a href="{{ route('dashboard.courses.index') }}" class="p-[10px_16px] flex items-center gap-[14px] rounded-full h-11 bg-[#8046FD] transition-all duration-300 hover:bg-[#8046FD]">
+                <a href="{{ route('dashboard.courses.index') }}" class="p-[10px_16px] flex items-center gap-[14px] rounded-full h-11 {{ Request::is('dashboard/courses*') ? 'bg-[#8046FD]' : '' }} transition-all duration-300 hover:bg-[#8046FD]">
                     <div>
-                        <img src="{{asset('images/icons/note-favorite.svg')}}" alt="icon">
+                        <img src="{{asset('images/icons/bill.svg')}}" alt="icon">
                     </div>
                     <p class="font-semibold transition-all duration-300 hover:text-white">Courses</p>
                 </a>
             </li>
             <li>
-                <a href="{{ route('dashboard.students.index') }}" class="p-[10px_16px] flex items-center gap-[14px] rounded-full h-11 transition-all duration-300 hover:bg-[#8046FD]">
+                <a href="{{ route('dashboard.students.index') }}" class="p-[10px_16px] flex items-center gap-[14px] rounded-full h-11 {{ Request::is('dashboard/students*') ? 'bg-[#8046FD]' : '' }} transition-all duration-300 hover:bg-[#8046FD]">
                     <div>
                         <img src="{{asset('images/icons/profile-2user.svg')}}" alt="icon">
                     </div>
@@ -42,7 +41,7 @@
                 </a>
             </li>
             <li>
-                <a href="{{ route('dashboard.teachers.index') }}" class="p-[10px_16px] flex items-center gap-[14px] rounded-full h-11 transition-all duration-300 hover:bg-[#8046FD]">
+                <a href="{{ route('dashboard.teachers.index') }}" class="p-[10px_16px] flex items-center gap-[14px] rounded-full h-11 {{ Request::is('dashboard/teachers*') ? 'bg-[#8046FD]' : '' }} transition-all duration-300 hover:bg-[#8046FD]">
                     <div>
                         <img src="{{asset('images/icons/profile.svg')}}" alt="icon">
                     </div>
@@ -55,7 +54,7 @@
                 <h3 class="font-bold text-xs text-[#A5ABB2]">OTHERS</h3>
             </li>
             <li>
-                <a href="{{ route('dashboard.project_students.index') }}" class="p-[10px_16px] flex items-center gap-[14px] rounded-full h-11 transition-all duration-300 hover:bg-[#8046FD]">
+                <a href="{{ route('dashboard.project_students.index') }}" class="p-[10px_16px] flex items-center gap-[14px] rounded-full h-11 {{ Request::is('dashboard/project*') ? 'bg-[#8046FD]' : '' }} transition-all duration-300 hover:bg-[#8046FD]">
                     <div>
                         <img src="{{asset('images/icons/3dcube.svg')}}" alt="icon">
                     </div>
@@ -67,7 +66,7 @@
             @role('student')
             
             <li>
-                <a href="{{ route('dashboard.modul') }}" class="p-[10px_16px] flex items-center gap-[14px] rounded-full h-11 transition-all duration-300 hover:bg-[#8046FD]">
+                <a href="{{ route('dashboard.modul') }}" class="p-[10px_16px] flex items-center gap-[14px] rounded-full h-11 {{ Request::is('dashboard/modul*') ? 'bg-[#8046FD]' : '' }} transition-all duration-300 hover:bg-[#8046FD]">
                     <div>
                         <img src="{{asset('images/icons/note-text.svg')}}" alt="icon">
                     </div>
@@ -75,15 +74,15 @@
                 </a>
             </li>
             <li>
-                <a href="{{ route('dashboard.video') }}" class="p-[10px_16px] flex items-center gap-[14px] rounded-full h-11 bg-[#8046FD] transition-all duration-300 hover:bg-[#8046FD]">
+                <a href="{{ route('dashboard.video') }}" class="p-[10px_16px] flex items-center gap-[14px] rounded-full h-11 {{ Request::is('dashboard/video*') ? 'bg-[#8046FD]' : '' }} transition-all duration-300 hover:bg-[#8046FD]">
                     <div>
                         <img src="{{asset('images/icons/bill.svg')}}" alt="icon">
                     </div>
-                    <p class="font-semibold text-white transition-all duration-300 hover:text-white">Course Video</p>
+                    <p class="font-semibold transition-all duration-300 hover:text-white">Course Video</p>
                 </a>
             </li>
             <li>
-                <a href="{{ route('dashboard.project') }}" class="p-[10px_16px] flex items-center gap-[14px] rounded-full h-11 transition-all duration-300 hover:bg-[#8046FD]">
+                <a href="{{ route('dashboard.project') }}" class="p-[10px_16px] flex items-center gap-[14px] rounded-full h-11 {{ Request::is('dashboard/project*') ? 'bg-[#8046FD]' : '' }} transition-all duration-300 hover:bg-[#8046FD]">
                     <div>
                         <img src="{{asset('images/icons/3dcube.svg')}}" alt="icon">
                     </div>
@@ -91,7 +90,7 @@
                 </a>
             </li>
             <li>
-                <a href="{{ route('dashboard.learning.index') }}" class="p-[10px_16px] flex items-center gap-[14px] rounded-full h-11 transition-all duration-300 hover:bg-[#8046FD]">
+                <a href="{{ route('dashboard.learning.index') }}" class="p-[10px_16px] flex items-center gap-[14px] rounded-full h-11 {{ Request::is('dashboard/learning*') ? 'bg-[#8046FD]' : '' }} transition-all duration-300 hover:bg-[#8046FD]">
                     <div>
                         <img src="{{asset('images/icons/note-favorite-outline.svg')}}" alt="icon">
                     </div>

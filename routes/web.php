@@ -47,11 +47,11 @@ Route::middleware('auth')->group(function () {
         ->middleware('role:teacher');
 
         // menambahkan video
-        Route::get('/add/video/{course:id}', [CourseVideoController::class, 'create'])
+        Route::get('/courses/add/video/{course:id}', [CourseVideoController::class, 'create'])
         ->middleware('role:teacher')
         ->name('course.add_video');
 
-        Route::post('/add/video/save/{course:id}', [CourseVideoController::class, 'store'])
+        Route::post('/courses/add/video/save/{course:id}', [CourseVideoController::class, 'store'])
         ->middleware('role:teacher')
         ->name('course.add_video.save');
 
@@ -59,66 +59,66 @@ Route::middleware('auth')->group(function () {
         ->middleware('role:teacher');
 
         // menambahkan modul
-        Route::get('/add/modul/{course:id}', [CourseModulController::class, 'create'])
+        Route::get('/courses/add/modul/{course:id}', [CourseModulController::class, 'create'])
         ->middleware('role:teacher')
         ->name('course.add_modul');
 
-        Route::post('/add/modul/save/{course:id}', [CourseModulController::class, 'store'])
+        Route::post('/courses/add/modul/save/{course:id}', [CourseModulController::class, 'store'])
         ->middleware('role:teacher')
         ->name('course.add_modul.save');
 
         Route::resource('course_moduls', CourseModulController::class)
         ->middleware('role:teacher');
 
-        Route::get('/course/question/create/{course}', [CourseQuestionController::class, 'create'])
+        Route::get('/courses/question/create/{course}', [CourseQuestionController::class, 'create'])
         ->middleware('role:teacher')
         ->name('course.create.question');
 
-        Route::post('/course/question/save/{course}', [CourseQuestionController::class, 'store'])
+        Route::post('/courses/question/save/{course}', [CourseQuestionController::class, 'store'])
         ->middleware('role:teacher')
         ->name('course.create.question.store');
         
         Route::resource('course_questions', CourseQuestionController::class)
         ->middleware('role:teacher');
 
-        Route::get('/course/students/show/{course}', [CourseStudentController::class, 'index'])
+        Route::get('/courses/students/show/{course}', [CourseStudentController::class, 'index'])
         ->middleware('role:teacher')
         ->name('course.course_students.index');
 
-        Route::get('/course/students/create/{course}', [CourseStudentController::class, 'create'])
+        Route::get('/courses/students/create/{course}', [CourseStudentController::class, 'create'])
         ->middleware('role:teacher')
         ->name('course.course_students.create');
 
-        Route::post('/course/students/save/{course}', [CourseStudentController::class, 'store'])
+        Route::post('/courses/students/save/{course}', [CourseStudentController::class, 'store'])
         ->middleware('role:teacher')
         ->name('course.course_students.store');
 
         //details course video
-        Route::get('/details/video', [FrontController::class, 'video'])
+        Route::get('/video', [FrontController::class, 'video'])
         ->name('video')
         ->middleware('role:student|teacher');
         
-        Route::get('/details/video/{course:slug}', [FrontController::class, 'details_video'])
+        Route::get('/video/{course:slug}', [FrontController::class, 'details_video'])
         ->name('details.video')
         ->middleware('role:student|teacher');
         
-        Route::get('/details/video/{course}/{courseVideoId}', [FrontController::class, 'video_course'])
+        Route::get('/video/{course}/{courseVideoId}', [FrontController::class, 'video_course'])
         ->name('video_course')
         ->middleware('role:student|teacher');   
 
         // details modul materi
-        Route::get('/details/modul', [FrontController::class, 'modul'])
+        Route::get('/modul', [FrontController::class, 'modul'])
         ->name('modul')
         ->middleware('role:student|teacher');
 
-        Route::get('/details/modul/{course:slug}', [FrontController::class, 'details_modul'])
+        Route::get('/modul/details/{course:slug}', [FrontController::class, 'details_modul'])
         ->name('front.modul')
         ->middleware('role:student|teacher');
 
         // project student
         Route::get('/project', [FrontController::class, 'project'])->name('project')->middleware('role:student');
 
-        Route::get('/add/project', [FrontController::class, 'create'])->name('project.create')->middleware('role:student');
+        Route::get('/project/add', [FrontController::class, 'create'])->name('project.create')->middleware('role:student');
     
         Route::post('/project/store', [FrontController::class, 'project_store'])->name('project.store')
         ->middleware('role:student');
