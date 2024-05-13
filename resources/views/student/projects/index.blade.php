@@ -8,8 +8,11 @@
                 <div class="w-full flex justify-between items-center">
                     <div class="flex flex-col gap-1">
                         <p class="font-extrabold text-[30px] leading-[45px]">New Project</p>
+                        <a href="{{ route('dashboard.project.details_guide') }}" class="h-[52px] p-[14px_20px] bg-blue-500 rounded-full font-bold text-white transition-all duration-300 hover:shadow-[0_4px_15px_0_#6436F14D]">Cek Panduan</a>
                     </div>
+                    
                     <a href="{{ route('dashboard.project.create') }}" class="h-[52px] p-[14px_20px] bg-[#6436F1] rounded-full font-bold text-white transition-all duration-300 hover:shadow-[0_4px_15px_0_#6436F14D]">Add New Project</a>
+                    
                     </div>
             </div>
 

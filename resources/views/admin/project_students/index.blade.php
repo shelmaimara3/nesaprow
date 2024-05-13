@@ -9,6 +9,7 @@
                     <div class="flex flex-col gap-1">
                         <p class="font-extrabold text-[30px] leading-[45px]">Project Student</p>
                     </div>
+                    <a href="{{ route('dashboard.project.guide.create') }}" class="h-[52px] p-[14px_20px] bg-[#6436F1] rounded-full font-bold text-white transition-all duration-300 hover:shadow-[0_4px_15px_0_#6436F14D]">Panduan Proyek</a>
                 </div>
             </div>
             <div class="course-list-container flex flex-col px-5 mt-[30px] gap-[30px]">

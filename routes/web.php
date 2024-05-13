@@ -45,6 +45,15 @@ Route::middleware('auth')->group(function () {
         Route::resource('project_students', ProjectStudentController::class)
         ->middleware('role:teacher');
 
+        // menambahkan panduan proyek kelompok
+        Route::get('/project/add/guide', [ProjectStudentController::class, 'create'])
+        ->middleware('role:teacher')
+        ->name('project.guide.create');
+
+        Route::post('/project/save/guide', [ProjectStudentController::class, 'store'])
+        ->middleware('role:teacher')
+        ->name('project.guide.save');
+
         // menambahkan video
         Route::get('/courses/add/video/{course:id}', [CourseVideoController::class, 'create'])
         ->middleware('role:teacher')
@@ -116,6 +125,8 @@ Route::middleware('auth')->group(function () {
 
         // project student
         Route::get('/project', [FrontController::class, 'project'])->name('project')->middleware('role:student');
+
+        Route::get('/project/details_guide', [FrontController::class, 'details_guide'])->name('project.details_guide')->middleware('role:student');
 
         Route::get('/project/add', [FrontController::class, 'create'])->name('project.create')->middleware('role:student');
     

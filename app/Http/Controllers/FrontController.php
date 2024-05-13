@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Course;
 use App\Models\Category;
 use App\Models\Occupation;
+use App\Models\ProjectGuide;
 use Illuminate\Http\Request;
 use App\Models\ProjectStudent;
 use Illuminate\Support\Carbon;
@@ -86,6 +87,11 @@ class FrontController extends Controller
 
     public function details_modul(Course $course){
         return view('front.details_modul', compact('course'));
+    }
+
+    public function details_guide(){
+        $projectGuides = ProjectGuide::all();
+        return view ('front.details_guide', compact('projectGuides'));
     }
 
 

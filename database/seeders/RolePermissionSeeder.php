@@ -30,6 +30,8 @@ class RolePermissionSeeder extends Seeder
             'create projects',
             'view projects',
             'edit projects',
+            'create guides',
+            'delete guides',
         ];
 
         // setiap user bisa memiliki beberapa permission
@@ -55,6 +57,8 @@ class RolePermissionSeeder extends Seeder
             'view teachers',
             'view projects',
             'edit projects',
+            'create guides',
+            'delete guides',
         ]);
 
         $studentRole = Role::create([

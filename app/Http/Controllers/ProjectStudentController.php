@@ -3,9 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Models\Occupation;
+use App\Models\ProjectGuide;
 use Illuminate\Http\Request;
 use App\Models\ProjectStudent;
 use Illuminate\Support\Facades\DB;
+use App\Http\Requests\StoreGuideProjectRequest;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 
 class ProjectStudentController extends Controller
 {
@@ -26,15 +29,36 @@ class ProjectStudentController extends Controller
     public function create()
     {
         //
+        $projectGuides = ProjectGuide::all();
+        return view('admin.project_students.create', compact('projectGuides'));
         
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(StoreGuideProjectRequest $request)
     {
         //
+
+        DB::transaction(function () use ($request) {
+
+            $validated = $request->validated();
+
+            if ($request->hasFile('guide_project')) {
+                $file = $request->file('guide_project');
+                $fileName = $file->getClientOriginalName(); // Mendapatkan nama asli file
+                $guidePath = $file->storeAs('public/guidance', $fileName); // Menyimpan file ke direktori storage
+            
+                // Update data $validated dengan nama file yang disimpan
+                $validated['guide_project'] = $guidePath;
+            }
+
+            $projectGuide = ProjectGuide::create($validated);
+
+        });
+
+        return redirect()->back();
     }
 
     /**
@@ -76,8 +100,17 @@ class ProjectStudentController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(ProjectStudent $projectStudent)
+
+    public function destroy($id)
     {
-        //
+        try {
+            $projectGuide = ProjectGuide::findOrFail($id);
+            
+            $projectGuide->delete();
+
+            return redirect()->back();
+        } catch (ModelNotFoundException $e) {
+            return redirect()->back()->with('error', 'Data tidak ditemukan');
+        }
     }
 }
