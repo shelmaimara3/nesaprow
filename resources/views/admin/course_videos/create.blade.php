@@ -10,6 +10,7 @@
                         <a href="{{ route('dashboard.courses.index') }}" class="text-[#7F8190] last:text-[#0A090B] last:font-semibold">Manage Courses</a>
                         <span class="text-[#7F8190] last:text-[#0A090B]">/</span>
                         <a href="#" class="text-[#7F8190] last:text-[#0A090B] last:font-semibold ">Course Video</a>
+                        
                     </div>
                 </div>
                 
@@ -61,8 +62,13 @@
                 @endif
 
                 <div class="mx-[70px] w-[870px] mt-[30px]">
-                    <h2 class="font-bold text-2xl">Course Video</h2>
-                    
+                    <h2 class="font-bold text-2xl">Course Video</h2> <br>
+                    <p>
+                        <h3 class="font-semibold">Panduan Insert Link Youtube</h3>
+                        - Path Video isi dengan embed link video youtube setelah tanda (=) terdapat 11 karakter <br>
+                        - Contoh 1 : youtube.com/watch?v=<strong><i>iILFBGm_I9M</i></strong> <br>
+                        - Contoh 2 : youtube.com/watch?v=<strong><i>I5kj-YsmWjM</i></strong><u>&t=3s</u> (tidak disertakan) 
+                    </p>
                     <div class="flex flex-col gap-[30px] mt-2">
                         <form method="POST" action="{{ route('dashboard.course.add_video.save', $course->id) }}" class="mx-[70px] mt-[30px] flex flex-col gap-5">
                             @csrf
