@@ -54,6 +54,11 @@
                         @else
                             <div class="flex items-center gap-[14px]">
                                 <p class="bg-[#FD445E] rounded-full p-[8px_20px] text-white font-semibold text-sm">{{ $answer->answer }}</p>
+                                @foreach($correctAnswers as $correctAnswer)
+                                    @if($correctAnswer->course_question_id == $answer->course_question_id)
+                                        <h3>Jawaban : <strong>{{ $correctAnswer->answer }}</strong></h3>
+                                    @endif
+                                @endforeach
                             </div>
                         @endif
                     </div>

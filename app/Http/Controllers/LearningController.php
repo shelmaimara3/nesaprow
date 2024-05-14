@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Course;
+use App\Models\CourseAnswer;
 use Illuminate\Http\Request;
 use App\Models\StudentAnswer;
 use App\Models\CourseQuestion;
@@ -74,14 +75,24 @@ class LearningController extends Controller
 
         $userId = Auth::id();
 
+        // Mendapatkan jawaban siswa untuk pertanyaan dalam kursus yang dipilih
         $studentAnswers = StudentAnswer::with('question')
         ->whereHas('question', function ($query) use ($course){
             $query->where('course_id', $course->id);
         })->where('user_id', $userId)->get();
 
+        // Menghitung total pertanyaan dalam kursus
         $totalQuestions = CourseQuestion::where('course_id', $course->id)->count();
+
+        // Menghitung jumlah jawaban yang benar
         $correctAnswersCount = $studentAnswers->where('answer', 'correct')->count();
+
+        // Memeriksa apakah siswa lulus (menjawab semua pertanyaan dengan benar)
         $passed = $correctAnswersCount == $totalQuestions;
+
+        $correctAnswers = CourseAnswer::where('is_correct', 1)
+        ->whereIn('course_question_id', $studentAnswers->pluck('course_question_id'))
+        ->get();
 
         return view('student.courses.learning_raport', [
             'passed' => $passed,
@@ -89,6 +100,7 @@ class LearningController extends Controller
             'studentAnswers' => $studentAnswers,
             'totalQuestions' => $totalQuestions,
             'correctAnswersCount' => $correctAnswersCount,
+            'correctAnswers' => $correctAnswers,
         ]);
     }
 }
