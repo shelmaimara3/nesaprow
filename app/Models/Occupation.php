@@ -16,6 +16,6 @@ class Occupation extends Model
     ];
 
     public function project_students(){
-        return $this->hasMany(ProjectStudent::class);
+        return $this->hasOne(ProjectStudent::class);
     }
 }
