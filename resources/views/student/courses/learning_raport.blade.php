@@ -46,6 +46,17 @@
                         <div class="flex flex-col gap-[6px]">
                             <p class="text-[#7F8190]">Question</p>
                             <p class="font-bold text-xl">{{ $answer->question->question }}</p>
+                            @if($answer->answer == 'correct')
+
+                            @else
+                            <p class="text-[#7F8190]">Answer</p>
+                            @foreach($correctAnswers as $correctAnswer)
+                                @if($correctAnswer->course_question_id == $answer->course_question_id)
+                                    <h3 class="font-semibold text-lg">{{ $correctAnswer->answer }}
+                                    </h3>
+                                @endif
+                                @endforeach
+                            @endif
                         </div>
                         @if($answer->answer == 'correct')
                             <div class="flex items-center gap-[14px]">
@@ -54,11 +65,7 @@
                         @else
                             <div class="flex items-center gap-[14px]">
                                 <p class="bg-[#FD445E] rounded-full p-[8px_20px] text-white font-semibold text-sm">{{ $answer->answer }}</p>
-                                @foreach($correctAnswers as $correctAnswer)
-                                    @if($correctAnswer->course_question_id == $answer->course_question_id)
-                                        <h3>Jawaban : <strong>{{ $correctAnswer->answer }}</strong></h3>
-                                    @endif
-                                @endforeach
+                                
                             </div>
                         @endif
                     </div>
