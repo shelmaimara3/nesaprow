@@ -15,7 +15,7 @@
             <div class="course-list-container flex flex-col px-5 mt-[30px] gap-[30px]">
                 <div class="course-list-header flex flex-nowrap justify-between pb-4 pr-10 border-b border-[#EEEEEE]">
                     <div class="flex shrink-0 w-[200px]">
-                        <p class="text-[#7F8190]">Nama Kelompok</p>
+                        <p class="text-[#7F8190]">Identitas Kelompok</p>
                     </div>
                     <div class="flex shrink-0 w-[150px]">
                         <p class="text-[#7F8190]">Tema Proyek</p>
@@ -25,6 +25,9 @@
                     </div>
                     <div class="flex justify-center shrink-0 w-[150px]">
                         <p class="text-[#7F8190]">Deadline</p>
+                    </div>
+                    <div class="flex justify-center shrink-0 w-[120px]">
+                        <p class="text-[#7F8190]">Skor</p>
                     </div>
                     <div class="flex justify-center shrink-0 w-[170px]">
                         <p class="text-[#7F8190]">Status</p>
@@ -42,6 +45,7 @@
                                 <p class="font-bold text-lg">{{ $project->name_team }}</p>
                                 <p>{{ $project->user->name }}</p>
                                 <p>{{ $project->occupation->name }}</p>
+                                <p>Anggota : {{ $project->member }}</p>
                             </div>
                         </div>
                     </div>
@@ -59,10 +63,15 @@
                             {{ \Carbon\Carbon::parse($project->deadline)->format('F j, Y') }}
                         </p>
                     </div>
+                    <div class="flex shrink-0 w-[120px] items-center justify-center">
+                        <p class="font-semibold">
+                            {{ $project->score }}
+                        </p>
+                    </div>
 
                     @if($project->is_done)
                     <div class="flex shrink-0 w-[170px] items-center justify-center">
-                        <p class="p-[8px_16px] rounded-full bg-[#EDFFE6] font-bold text-sm text-[#39A611]">Sudah Direview</p>
+                        <p class="p-[8px_16px] rounded-full bg-[#EDFFE6] font-bold text-sm text-[#39A611]">Sudah Di review</p>
                     </div>
                     @else
                     <div class="flex shrink-0 w-[170px] items-center justify-center">
