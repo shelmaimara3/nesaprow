@@ -15,10 +15,11 @@ return new class extends Migration
             $table->id();
             $table->string('name_team');
             $table->string('title_project');
-            $table->text('desc_project');
+            $table->text('member');
             $table->string('proof_project');
             $table->date('deadline')->nullable();
             $table->boolean('is_done');
+            $table->integer('score')->nullable();
             $table->foreignId('user_id')->constrained()->onDelete('cascade');
             $table->foreignId('occupation_id')->constrained()->onDelete('cascade');
             $table->softDeletes();
