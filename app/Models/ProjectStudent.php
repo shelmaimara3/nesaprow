@@ -15,10 +15,11 @@ class ProjectStudent extends Model
     protected $fillable = [
         'name_team',
         'title_project',
-        'desc_project',
+        'member',
         'occupation_id',
         'proof_project',
         'is_done',
+        'score',
         'user_id',
         'deadline',
     ];
