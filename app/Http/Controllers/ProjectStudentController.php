@@ -85,16 +85,21 @@ class ProjectStudentController extends Controller
      */
     public function update(Request $request, ProjectStudent $projectStudent)
     {
-        //
-        DB::transaction(function () use ($projectStudent) {
-            
-            $projectStudent->update([
-                'is_done' => true
-            ]);
+        $validated = $request->validate([
+            'score' => 'nullable|integer',
+        ]);
+        
+        DB::transaction(function () use ($projectStudent, $validated) {
+            $dataToUpdate = ['is_done' => true];
 
+            if(array_key_exists('score', $validated)) {
+                $dataToUpdate['score'] = $validated['score'];
+            }
+
+            $projectStudent->update($dataToUpdate);
         });
 
-        return redirect()->back();
+        return redirect()->route('dashboard.project_students.index');
     }
 
     /**
