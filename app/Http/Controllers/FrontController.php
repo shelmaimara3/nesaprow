@@ -53,6 +53,7 @@ class FrontController extends Controller
             $validated['user_id'] = $user->id;
             $validated['deadline'] = Carbon::now()->addDays(3);
             $validated['is_done'] = false;
+            $validated['score'] = 0;
 
             $transaction = ProjectStudent::create($validated);
         });
