@@ -26,7 +26,7 @@ class StoreProjectStudentRequest extends FormRequest
             'name_team' => 'required|string|max:255',
             'occupation_id' => 'required|integer',
             'title_project' => 'required|string|max:255',
-            'desc_project' => 'required|string',
+            'member' => 'required|string',
             'proof_project' => 'required|file|mimes:rar,zip',
         ];
     }
