@@ -25,9 +25,8 @@
                     <div class="flex shrink-0 w-[150px]">
                         <p class="text-[#7F8190]">Tema Proyek</p>
                     </div>
-                    
-                    <div class="flex justify-center shrink-0 w-[120px]">
-                        <p class="text-[#7F8190]">Deskripsi proyek</p>
+                    <div class="flex justify-center shrink-0 w-[150px]">
+                        <p class="text-[#7F8190]">Anggota</p>
                     </div>
                     <div class="flex justify-center shrink-0 w-[150px]">
                         <p class="text-[#7F8190]">Date Created</p>
@@ -35,6 +34,10 @@
                     <div class="flex justify-center shrink-0 w-[170px]">
                         <p class="text-[#7F8190]">Deadline</p>
                     </div>
+                    <div class="flex justify-center shrink-0 w-[120px]">
+                        <p class="text-[#7F8190]">Skor</p>
+                    </div>
+
                     <div class="flex justify-center shrink-0 w-[170px]">
                         <p class="text-[#7F8190]">Status</p>
                     </div>
@@ -54,8 +57,8 @@
                     <div class="flex shrink-0 w-[150px] items-center justify-center">
                         <p class="font-bold text-lg">{{ $project->title_project }}</p>
                     </div>
-                    <div class="flex shrink-0 w-[120px] items-center justify-center">
-                        <p class="font-bold text-sm">{{ $project->desc_project }}</p>
+                    <div class="flex shrink-0 w-[150px] items-center justify-center">
+                        <p class="font-bold text-sm">{{ $project->member }}</p>
                     </div>
                     <div class="flex shrink-0 w-[150px] items-center justify-center">
                         <p class="font-semibold">
@@ -67,14 +70,19 @@
                             {{ \Carbon\Carbon::parse($project->deadline)->format('F j, Y') }}
                         </p>
                     </div>
+                    <div class="flex shrink-0 w-[120px] items-center justify-center">
+                        <p class="font-semibold">
+                            {{ $project->score}}
+                        </p>
+                    </div>
 
                     @if($project->is_done)
                     <div class="flex shrink-0 w-[170px] items-center justify-center">
-                        <p class="p-[8px_16px] rounded-full bg-[#EDFFE6] font-bold text-sm text-[#39A611]">Sudah Direview</p>
+                        <p class="p-[8px_16px] rounded-full bg-[#EDFFE6] font-bold text-sm text-[#39A611]">Sudah di review</p>
                     </div>
                     @else
                     <div class="flex shrink-0 w-[170px] items-center justify-center">
-                        <p class="p-[8px_16px] rounded-full bg-[#FFE6E6] font-bold text-sm text-[#F60B0B]">Pending</p>
+                        <p class="p-[8px_16px] rounded-full bg-[#FFE6E6] font-bold text-sm text-[#F60B0B]">Sedang di review</p>
                     </div>
                     @endif
             
